@@ -1,0 +1,2 @@
+inverse:
+	javac inverse.java
