@@ -1,8 +1,8 @@
 Benchmark of modular inversion implementations
 ==============================================
 
-This project is a comparision of Java and Python implementation of modular
-inversion using extended Euclidean algorithm. It's an excercise in Objective
+This project is a comparison of Java and Python implementation of modular
+inversion using extended Euclidean algorithm. It's an exercise in Objective
 Programming course.
 
 Surprisingly Python implementation appeared to be faster in all test cases
