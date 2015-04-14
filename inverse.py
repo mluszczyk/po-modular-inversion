@@ -32,11 +32,11 @@ def main():
     number = int(input())
     modulo = int(input())
 
-    try:
-        result = repeat(rep, find, number, modulo)
-        print(result)
-    except NoInverseException:
+    result = repeat(rep, find, number, modulo)
+    if result is None:
         print("Not invertible")
+    else:
+        print(result)
 
 
 if __name__ == '__main__':
