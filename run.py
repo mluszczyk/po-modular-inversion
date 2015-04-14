@@ -42,13 +42,13 @@ class Test(object):
         start = time.perf_counter()
         process = subprocess.Popen(
                 program, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        process.communicate(stdin)
+        stdout, stderr = process.communicate(stdin)
         stop = time.perf_counter()
-        return stop - start
+        return (stop - start, stdout)
 
 
 TESTS = (
-    [Test(10**x, *MEDIUM_PRIMES) for x in range(8)] +
+    [Test(10**x, *MEDIUM_PRIMES) for x in range(6)] +
     [Test(10**x, *BIG_PRIMES) for x in range(5)]
 )
 
@@ -62,8 +62,16 @@ def main():
         print("Program {}: {}".format(num, program))
     for test in TESTS:
         print(test)
+        first_run = True
+        prev_result = None
         for num, program in enumerate(PROGRAMS):
-            print("{}. {}".format(num, test.execute(program)))
+            time, result = test.execute(program)
+            print("{}. {}".format(num, time))
+            if first_run:
+                first_run = False
+                prev_result = result
+            else:
+                assert result == prev_result
 
 
 if __name__ == '__main__':
