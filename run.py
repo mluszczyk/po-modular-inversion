@@ -17,6 +17,7 @@ MEDIUM_PRIMES = [
     (10**317 - 1) // 9
 ]
 
+TEST_REPETITIONS = 5
 
 class Test(object):
     @staticmethod
@@ -35,7 +36,7 @@ class Test(object):
             self.repetitions,
             self.digits(self.number), self.digits(self.modulo))
 
-    def execute(self, program):
+    def execute_once(self, program):
         input_numbers = [self.repetitions, self.number, self.modulo]
         input_str = "\n".join(map(str, input_numbers)) + '\n'
         stdin = input_str.encode()
@@ -47,6 +48,20 @@ class Test(object):
         stop = time.perf_counter()
         return (stop - start, stdout)
 
+    def execute(self, program):
+        times = []
+        first_run = True
+        prev_result = None
+        for rep in range(TEST_REPETITIONS):
+            time, result = self.execute_once(program)
+            if first_run:
+                first_run = False
+                prev_result = result
+            else:
+                assert prev_result == result
+            times.append(time)
+        times.sort()
+        return times[len(times) // 2], result
 
 TESTS = (
     [Test(10**x, *MEDIUM_PRIMES) for x in range(6)] +
