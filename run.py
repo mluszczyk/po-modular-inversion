@@ -9,7 +9,7 @@ import time
 
 BIG_PRIMES = [
     2**110503 - 1,
-    (391581*2^(216193))-1
+    (391581*2**(216193))-1
     #2**132049 - 1
 ]
 MEDIUM_PRIMES = [
@@ -41,7 +41,8 @@ class Test(object):
         stdin = input_str.encode()
         start = time.perf_counter()
         process = subprocess.Popen(
-                program, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+                program,
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate(stdin)
         stop = time.perf_counter()
         return (stop - start, stdout)
@@ -49,7 +50,7 @@ class Test(object):
 
 TESTS = (
     [Test(10**x, *MEDIUM_PRIMES) for x in range(6)] +
-    [Test(10**x, *BIG_PRIMES) for x in range(5)]
+    [Test(10**x, *BIG_PRIMES) for x in range(4)]
 )
 
 PROGRAMS = (("python2", "inverse.py"),
