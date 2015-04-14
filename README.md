@@ -10,12 +10,8 @@ in which it beat CPython, but PyPy was still faster. A possible reason is the
 fact that Python's big integer arithmetic is built in and compiled into
 machine code and Java's BigInteger library is pure Java.
 
-I have been informed that Java performs much better on the Java version
-mentioned below, in which it outperforms PyPy. (Thanks, Albert)
-
-    java version "1.9.0-ea"
-    Java(TM) SE Runtime Environment (build 1.9.0-ea-b57)
-    Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b57, mixed mode)
+I have been informed that Java performs much better on other VM version
+(Java HotSpot 1.9.0), in which it outperforms PyPy. (Thanks, Albert.)
 
 Results of the tests are visible below:
 
