@@ -70,6 +70,8 @@ TESTS = (
 
 PROGRAMS = (("python2", "inverse.py"),
             ("python3", "inverse.py"),
+            ("pypy", "inverse.py"),
+            ("pypy3", "inverse.py"),
             ("java", "Inverse"))
 
 
